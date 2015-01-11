@@ -53,7 +53,13 @@
 			for(e in attr)
 			{
 				if(e != 'content')
-					tag += ' ' + e + '="' + attr[e] + '"';
+				{
+					if(e == 'style')
+						tag += ' ' + e + '="' + parseStyle(attr[e]) + '"';
+						
+					else
+						tag += ' ' + e + '="' + attr[e] + '"';
+				}
 
 				else
 					content += attr[e];
@@ -92,5 +98,20 @@
 			return true;
 
 		return false;
+	}
+
+	/*
+	*	Parse style object
+	*/
+	function parseStyle(obj)
+	{
+		var style = '';
+
+		for(rule in obj)
+		{
+			style += rule + ':' + obj[rule] + ';';
+		}
+
+		return style;
 	}
 })(window.jQuery);
