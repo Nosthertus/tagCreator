@@ -5,18 +5,18 @@
 	*/
 	a.fn.tagCreator = function(obj)
 	{
-		var tagObj;
+		var tagObj = '';
 
 		if(typeof obj === 'object')
 		{
 			for(tag in obj)
-				tagObj = createTag(tag, obj[tag]);
+				tagObj += createTag(tag, obj[tag]);
 		}
 
 		if(typeof obj === 'string')
 			tagObj = createTag(obj);
 
-		return tagObj;
+		$(this).append(tagObj);
 	};
 
 	/*
@@ -26,6 +26,7 @@
 	{
 		var tag = '';
 		var single = isSingle(obj);
+		var content = '';
 
 		if(attr)
 		{
@@ -33,10 +34,15 @@
 
 			for(e in attr)
 			{
-				tag += ' ' + e + '="' + attr[e] + '"';
+				if(e != 'content')
+					tag += ' ' + e + '="' + attr[e] + '"';
+
+				else
+					content += attr[e];
 			}
 
 			tag += '>';
+			tag += content;
 
 			if(!single)
 				tag += '</' + obj + '>';
