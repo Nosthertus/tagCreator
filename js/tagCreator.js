@@ -27,6 +27,21 @@
 		var tag = '';
 		var single = isSingle(obj);
 
+		if(attr)
+		{
+			tag += '<' + obj;
+
+			for(e in attr)
+			{
+				tag += ' ' + e + '="' + attr[e] + '"';
+			}
+
+			tag += '>';
+
+			if(!single)
+				tag += '</' + obj + '>';
+		}
+
 		else
 		{
 			if(single)
