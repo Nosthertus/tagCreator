@@ -68,7 +68,7 @@
 	*/
 	function isSingle(tag)
 	{
-		var single = ['input'];
+		var single = ['input', 'base', 'br', 'hr', 'img', 'keygen', 'link', 'menuitem', 'meta', 'source', 'track'];
 
 		if(single.indexOf(tag) != -1)
 			return true;
