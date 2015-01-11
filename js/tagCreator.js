@@ -15,7 +15,7 @@
 	{
 		$(this).append(create(tag));
 
-		callback;
+		callback();
 	};
 
 	/*
