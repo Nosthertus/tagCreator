@@ -3,7 +3,25 @@
 	/*
 	*	Create function for jQuery
 	*/
-	a.fn.tagCreator = function(obj)
+	a.tagCreator = function(tag)
+	{
+		return create(tag);
+	};
+
+	/*
+	*	Append tag object inside the element
+	*/
+	a.fn.tagCreator = function(tag, callback)
+	{
+		$(this).append(create(tag));
+
+		callback;
+	};
+
+	/*
+	*	Parse tag object
+	*/
+	function create(obj)
 	{
 		var tagObj = '';
 
@@ -16,7 +34,7 @@
 		if(typeof obj === 'string')
 			tagObj = createTag(obj);
 
-		$(this).append(tagObj);
+		return tagObj;
 	};
 
 	/*
