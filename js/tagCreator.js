@@ -109,7 +109,7 @@
 
 		for(rule in obj)
 		{
-			style += rule + ':' + obj[rule] + '; ';
+			style += rule + ':' + obj[rule] + ';';
 		}
 
 		return style;
