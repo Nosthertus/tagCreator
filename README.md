@@ -35,7 +35,8 @@ example:
     	}
     });
 
-this creates the tag with its attributes inside `#testingTag` element
+this creates the tag with its attributes inside `#testingTag` element.
+
 **Note:** The plugin can create multiple tags, just define more tag properties.
 
 #Options
