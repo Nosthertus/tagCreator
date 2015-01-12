@@ -37,7 +37,7 @@ example:
 
 this creates the tag with its attributes inside `#testingTag` element.
 
-**Note:** The plugin can create multiple tags, just define more tag properties.
+**Note:** The plugin can create multiple tags, just define more tag properties. Also, the plugin has a callback when accesing from jquery element `$(document).tagCreator(object, callback);`
 
 #Options
 
