@@ -1,0 +1,22 @@
+{
+  "name": "tagCreator",
+  "homepage": "https://github.com/Nosthertus/tagCreator",
+  "authors": [
+    "Nosthertus <darkfreak17@hotmail.com>"
+  ],
+  "description": "A jQuery plugin to create tags easily",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "jquery",
+    "tag",
+    "generator",
+    "helper",
+    "javascript",
+    "js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
