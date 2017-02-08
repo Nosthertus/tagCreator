@@ -16,10 +16,12 @@
 	*/
 	a.fn.tagCreator = function(tag, callback)
 	{
-		$(this).append(create(tag));
+		var element = $(create(tag));
+
+		$(this).append(element);
 
 		if(callback)
-			callback();
+			callback(element);
 	};
 
 	/**
