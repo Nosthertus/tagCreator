@@ -1,21 +1,18 @@
-/*
-Copyright (c) <year> <copyright holders>
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
 (function(a)
 {
-	/*
-	*	Create function for jQuery
-	*/
+	/**
+	 * Injects the plugin into jQuery core and compiles the value
+	 * 
+	 * @param  {String|Object} tag The value to compile into tag element
+	 * @return {String}            The compiled tag element
+	 */
 	a.tagCreator = function(tag)
 	{
 		return create(tag);
 	};
 
 	/*
-	*	Append tag object inside the element
+	*	Inject the plugin into selected element
 	*/
 	a.fn.tagCreator = function(tag, callback)
 	{
@@ -25,9 +22,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			callback();
 	};
 
-	/*
-	*	Parse tag object
-	*/
+	/**
+	 * Creates a tag from either object or string
+	 * 
+	 * @param  {Object|String} obj The element to create from the value
+	 * @return {String}            The string element compiled
+	 */
 	function create(obj)
 	{
 		var tagObj = '';
@@ -44,30 +44,44 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		return tagObj;
 	};
 
-	/*
-	*	Create tag element
-	*/
-	function createTag(obj, attr)
+	/**
+	 * Creates an element string from an object
+	 * 
+	 * @param  {String} element  The element name for creating the tag
+	 * @param  {Object} attr     The structure of the element
+	 * @return {String}          The created tag element
+	 */
+	function createTag(element, attr)
 	{
 		var tag = '';
-		var single = isSingle(obj);
+		var single = isSingle(element);
 		var content = '';
 
 		if(attr)
 		{
-			tag += '<' + obj;
+			tag += '<' + element;
 
 			for(e in attr)
 			{
+				// Add attr if no content prop is present
 				if(e != 'content')
 				{
+					// Create style attributes from object style
 					if(e == 'style')
 						tag += ' ' + e + '="' + parseStyle(attr[e]) + '"';
-						
+
+					// Create data attributes from object data
+					else if(e == "data" && typeof attr[e] == "object"){
+						var dataString = parseData(attr[e]);
+						tag += dataString;
+					}
+
+					// Create any other attr
 					else
 						tag += ' ' + e + '="' + attr[e] + '"';
 				}
 
+				// Add the content of the element
 				else
 					content += attr[e];
 			}
@@ -76,27 +90,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			tag += content;
 
 			if(!single)
-				tag += '</' + obj + '>';
+				tag += '</' + element + '>';
 		}
 
 		else
 		{
 			if(single)
-				tag += '<' + obj + '>';
+				tag += '<' + element + '>';
 
 			else
 			{
-				tag += '<' + obj + '>';
-				tag += '</' + obj + '>';
+				tag += '<' + element + '>';
+				tag += '</' + element + '>';
 			}
 		}
 
 		return tag;
 	}
 
-	/*
-	*	Check if the provided tag is single tag
-	*/
+	/**
+	 * Checks if the provided tag value is single tag
+	 * 
+	 * @param  {String}  tag The name of the tag to check
+	 * @return {Boolean}     Whether the provided tag is single
+	 */
 	function isSingle(tag)
 	{
 		var single = ['input', 'base', 'br', 'hr', 'img', 'keygen', 'link', 'menuitem', 'meta', 'source', 'track'];
@@ -107,9 +124,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		return false;
 	}
 
-	/*
-	*	Parse style object
-	*/
+	/**
+	 * Parses the style object into style attr values
+	 * 
+	 * @param  {Object} obj The object of style structure
+	 * @return {String}     The compiled style string attr
+	 */
 	function parseStyle(obj)
 	{
 		var style = '';
@@ -120,5 +140,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 
 		return style;
+	}
+
+	/**
+	 * Parses data object into data attr string
+	 * 
+	 * @param  {Object} obj The data structure to parse
+	 * @return {String}     The parsed data object structure into string
+	 */
+	function parseData(obj){
+		var str = [];
+
+		for(p in obj){
+			str.push("data-" + p + "=\"" + obj[p]+ "\"");
+		}
+
+		return str.join(" ");
 	}
 })(window.jQuery);
