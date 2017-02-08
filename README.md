@@ -9,31 +9,37 @@ tagCreator returns a string by accessing directly to the function
 
 example:
 
-    $.tagCreator({
-    	div: {
-    		id: 'firstTag',
-    		class: 'normal'
-    	}
-    });
+```Javascript
+$.tagCreator({
+    div: {
+        id: 'firstTag',
+        class: 'normal'
+    }
+});
+```
 
 returns 
 
-    <div id="firstTag" class="normal"></div>
-
+```HTML
+<div id="firstTag" class="normal"></div>
+```
 
 to insert tag inside an element with jQuery
 
-    $(element).tagCreator(object);
-
+```Javascript
+$(element).tagCreator(object);
+```
 
 example:
 
-    $('#testingTag').tagCreator({
-    	div: {
-    		id: 'firstTag',
-    		class: 'normal'
-    	}
-    });
+```Javascript
+$('#testingTag').tagCreator({
+    div: {
+        id: 'firstTag',
+        class: 'normal'
+    }
+});
+```
 
 this creates the tag with its attributes inside `#testingTag` element.
 
@@ -48,28 +54,49 @@ tagCreator also has option properties
 can be added as a property in the tag.
 example:
 
-    $('#testingTag').tagCreator({
-    	div: {
-    		id: 'firstTag',
-    		class: 'normal',
-    		content: 'This is the content'
-    	}
-    });
+```Javascript
+$('#testingTag').tagCreator({
+    div: {
+        id: 'firstTag',
+        class: 'normal',
+        content: 'This is the content'
+    }
+});
+```
+
 this will add the content text inside the tag
 
 **Style**
 can also be added as property object
 example:
 
-    $('#testingTag').tagCreator({
-    	div: {
-    		id: 'firstTag',
-    		class: 'normal',
-    		style: {
-    			width: '80px',
-    			height: '80px',
-    			'background-color': 'black'
-    		}
-    	}
-    });
+```Javascript
+$('#testingTag').tagCreator({
+    div: {
+        id: 'firstTag',
+        class: 'normal',
+        style: {
+            width: '80px',
+            height: '80px',
+            'background-color': 'black'
+        }
+    }
+});
+```
+
 this will parse the style object and insert to style property of the tag
+
+**Data**
+This property can be used to add multiple data attrs into the compiled element
+
+```Javascript
+$("#testingTag").tagCreator({
+	div: {
+    	id: 'firstTag',
+        class: 'normal',
+        data: {
+        	target: '#modal-1'
+        }
+    }
+});
+```
