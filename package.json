@@ -1,0 +1,30 @@
+{
+  "name": "tag-creator",
+  "version": "0.1.0",
+  "description": "A jQuery plugin for creating HTML elements providing object structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nosthertus/tagCreator.git"
+  },
+  "keywords": [
+    "html",
+    "tag",
+    "element",
+    "creator",
+    "jquery",
+    "plugin"
+  ],
+  "author": "Oscar Reyes <nosthertus@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nosthertus/tagCreator/issues"
+  },
+  "homepage": "https://github.com/Nosthertus/tagCreator#readme",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
